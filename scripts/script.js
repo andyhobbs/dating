@@ -20,14 +20,14 @@ window.addEventListener('load', () => {
 
 const noButton = document.querySelector('#noBtn');
 
-const moveNoButton = () => {
-  var x = Math.random() * (window.innerWidth - noButton.offsetWidth);
-  var y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+noButton.addEventListener("click", function() {
+  // Випадкова позиція для кнопки в межах екрана
+  const randomX = Math.floor(Math.random() * 200) - 100; // Випадковий зміщення по горизонталі
+  const randomY = Math.floor(Math.random() * 200) - 100; // Випадковий зміщення по вертикалі
 
-  noButton.style.position = 'absolute';
-  noButton.style.left = `${x}px`;
-  noButton.style.top = `${y}px`;
-}
+  noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  noButton.style.transition = "transform 0.5s ease"; // Плавний перехід
+});
 
 $('a.like-button').on('click', function(e) {
   $(this).toggleClass('liked');
@@ -36,9 +36,6 @@ $('a.like-button').on('click', function(e) {
       $(e.target).removeClass('liked')
   }, 1000)
 });
-
-noButton.addEventListener('click', moveNoButton);
-noButton.addEventListener('mouseenter', moveNoButton);
 
 document.getElementById('yesBtn').addEventListener('click', () => {
   setTimeout(() => {
